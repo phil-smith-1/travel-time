@@ -9,6 +9,7 @@ group :development, :test do
   gem 'rspec', '~> 3.5'
   gem 'pry', '~> 0.10.4'
   gem 'rubocop', '~> 0.47.1'
+  gem 'dotenv', '~> 2.2'
 end
 
 group :development do
