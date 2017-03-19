@@ -18,5 +18,4 @@ end
 
 group :test do
   gem 'webmock', '~> 2.3', '>= 2.3.2'
-  gem 'vcr', '~> 3.0', '>= 3.0.3'
 end
