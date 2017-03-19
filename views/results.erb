@@ -1,0 +1,30 @@
+<% binding.pry %>
+<div class="row">
+  <div class="col-md-10 col-md-offset-2">
+    <h2>Itinery</h2>
+    <p>Travelling on <%= @results.first[:departure_date_time].strftime('%A %-d %B %Y') %>.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-2">
+    <% @results.each_with_index do |result, index| %>
+      <div class="table-responsive" style="margin-bottom:10px;">
+        <table class="table table-striped table-bordered">
+          <tr><th colspan=2>Stop <%= index %> - <%= result[:postcode] %></th></tr>
+          <% if result[:travel_time_minutes] %>
+            <tr><th>Travel time from last stop</th><td><%= Time.at(result[:travel_time_minutes] * 60).utc.strftime('%H:%M') %></td></tr>
+          <% end %>
+          <% if result[:arrival_date_time] %>
+            <tr><th>Arrival time</th><td><%= result[:arrival_date_time].strftime('%H:%M') %></td></tr>
+          <% end %>
+          <% if result[:appointment_duration] > 0 %>
+            <tr><th>Appointment duration</th><td><%= Time.at(result[:appointment_duration] * 60).utc.strftime('%H:%M') %></td></tr>
+          <% end %>
+          <% if result[:departure_date_time] %>
+            <tr><th>Departure time</th><td><%= result[:departure_date_time].strftime('%H:%M') %></td></tr>
+          <% end %>
+        </table>
+      </div>
+    <% end %>
+  </div>
+</div>
