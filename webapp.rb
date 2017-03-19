@@ -1,10 +1,15 @@
+#require 'dotenv/load'
 require 'sinatra'
 
 get '/' do
   erb :form
 end
 
-post 'results' do
+get '/postcode-form' do
+  erb :postcode_form_group, layout: false
+end
+
+post '/results' do
   @result = Result.new(params)
   erb :results
 end

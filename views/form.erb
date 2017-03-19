@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col-md-10 col-md-offset-2">
+    <h2>Travel Time</h2>
+    <p>We are starting from the Rentify office in Barbican (EC1A 9HF). Add one or more postcodes to the form below to generate travel times. You can also add the duration of each appointment if you know it. Don't forget to add your start time!</p>
+  </div>
+</div>
+<form class="form-inline" method="post" action="/results">
+  <div class="row" style="margin-bottom: 15px;">
+    <div class="col-md-3 col-md-offset-2">
+      <div class="form-group">
+        <label for="start_date_time">Start time</label>
+        <input type="datetime-local" class="form-control" id="start_date_time" name="start_date_time">
+      </div>
+    </div>
+  </div>
+  <div id="postcodes"><%= erb :postcode_form_group %></div>
+  <div class="row">
+    <div class="col-md-1 col-md-offset-2" style="margin-right: 70px;">
+      <button type="button" class="btn btn-default" onclick="addPostcodeForm()">Add more postcodes</button>
+    </div>
+    <div class="col-md-1">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
