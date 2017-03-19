@@ -1,14 +1,15 @@
+<% id = rand(100) %>
 <div class="row" style="margin-bottom: 15px;">
 	<div class="col-md-3 col-md-offset-2">
 		<div class="form-group">
-		  <label for="postcode">Postcode</label>
-		  <input type="text" class="form-control" id="postcode" name="postcodes[]" placeholder="Postcode">
+		  <label for="postcode_<%= id %>">Postcode</label>
+		  <input type="text" class="form-control" id="postcode_<%= id %>" name="postcodes[]" placeholder="Postcode">
 		</div>
 	</div>
 	<div class="col-md-5">
 		<div class="form-group">
-		  <label for="duration">Appointment duration (minutes)</label>
-		  <input type="text" class="form-control" id="duration" name="durations[]" placeholder="Duration">
+		  <label for="duration_<%= id %>">Appointment duration (minutes)</label>
+		  <input type="text" class="form-control" id="duration_<%= id %>" name="durations[]" placeholder="Duration">
 		</div>
 	</div>
 </div>
