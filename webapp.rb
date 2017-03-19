@@ -1,4 +1,4 @@
-#require 'dotenv/load'
+require 'dotenv/load'
 require 'sinatra'
 
 get '/' do
@@ -10,8 +10,8 @@ get '/postcode-form' do
 end
 
 post '/results' do
-  @result = Result.new(params)
+  @results = Result.new(params).full_data
   erb :results
 end
 
-require_relative 'models/result'
+require_relative 'models/init'
