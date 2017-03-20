@@ -1,8 +1,12 @@
-<% binding.pry %>
 <div class="row">
   <div class="col-md-10 col-md-offset-2">
-    <h2>Itinery</h2>
-    <p>Travelling on <%= @results.first[:departure_date_time].strftime('%A %-d %B %Y') %>.</p>
+    <h2>Agent Itinery</h2>
+    <p>Travelling on <strong><%= @results.first[:departure_date_time].strftime('%A %-d %B %Y') %></strong>.</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-10 col-md-offset-2">
+    <div id="map"></div>
   </div>
 </div>
 <div class="row">
@@ -28,3 +32,54 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  var map;
+  var currentinfowindow
+  function initMap() {
+    var stop0coords = new google.maps.LatLng(<%= @results.first[:latitude] %>, <%= @results.first[:longitude] %>);
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: stop0coords,
+      zoom: 16
+    });
+    <% route_coords = '' %>
+    <% @results.each_with_index do |result, index|
+        window_content = "<h5>Stop#{index} - #{result[:postcode]}</h5>"
+        window_content += "<br />Travel time: #{Time.at(result[:travel_time_minutes] * 60).utc.strftime('%H:%M')}" if result[:travel_time_minutes]
+        window_content += "<br />Arrival time: #{result[:arrival_date_time].strftime('%H:%M')}" if result[:arrival_date_time]
+        window_content += "<br />Appointment duration: #{Time.at(result[:appointment_duration] * 60).utc.strftime('%H:%M')}" if result[:appointment_duration] > 0
+        window_content += "<br />Departure time: #{result[:departure_date_time].strftime('%H:%M')}" if result[:departure_date_time]
+
+        route_coords += "{ lat: #{result[:latitude]}, lng: #{result[:longitude]} }," %>
+      var stop<%= index %>coords = new google.maps.LatLng(<%= result[:latitude] %>, <%= result[:longitude] %>);
+      var stop<%= index %>marker = new google.maps.Marker({
+        position: stop<%= index %>coords,
+        title:'Stop <%= index %>'
+      });
+      stop<%= index %>marker.setMap(map);
+      var stop<%= index %>window = new google.maps.InfoWindow({
+        content: '<%= window_content %>'
+      });
+      stop<%= index %>marker.addListener('click', function() {
+        if (currentinfowindow) {
+          eval(currentinfowindow).close();
+        }
+        currentinfowindow = 'stop<%= index %>window';
+        stop<%= index %>window.open(map, stop<%= index %>marker);
+      });
+    <% end %>
+
+    var route_coords = [<%= route_coords.to_s %>];
+    
+    var route = new google.maps.Polyline({
+      path: route_coords,
+      geodesic: true,
+      strokeColor: '#FF0000',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    });
+
+    route.setMap(map);
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer></script>

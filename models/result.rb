@@ -1,5 +1,3 @@
-require 'pry'
-
 class Result
   def initialize(params)
     @params = params
