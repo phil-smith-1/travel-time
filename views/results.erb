@@ -1,12 +1,17 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-2">
-    <h2>Agent Itinery</h2>
+    <h2>Agent Itinerary</h2>
     <p>Travelling on <strong><%= @results.first[:departure_date_time].strftime('%A %-d %B %Y') %></strong>.</p>
   </div>
 </div>
 <div class="row">
   <div class="col-md-10 col-md-offset-2">
     <div id="map"></div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-1 col-md-offset-2" style="margin-bottom: 5px;">
+    <a class="btn btn-primary" href='/' role='button'>New itinerary</a>
   </div>
 </div>
 <div class="row">
@@ -44,7 +49,7 @@
     });
     <% route_coords = '' %>
     <% @results.each_with_index do |result, index|
-        window_content = "<h5>Stop#{index} - #{result[:postcode]}</h5>"
+        window_content = "<h5>Stop #{index} - #{result[:postcode]}</h5>"
         window_content += "<br />Travel time: #{Time.at(result[:travel_time_minutes] * 60).utc.strftime('%H:%M')}" if result[:travel_time_minutes]
         window_content += "<br />Arrival time: #{result[:arrival_date_time].strftime('%H:%M')}" if result[:arrival_date_time]
         window_content += "<br />Appointment duration: #{Time.at(result[:appointment_duration] * 60).utc.strftime('%H:%M')}" if result[:appointment_duration] > 0
