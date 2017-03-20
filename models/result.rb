@@ -1,7 +1,7 @@
 class Result
   def initialize(params)
     @params = params
-    @start_date_time = Time.parse(@params['start_date_time'])
+    @start_date_time = @params['start_date_time'].empty? ? Time.now : Time.parse(@params['start_date_time'])
     add_first_address
   end
 

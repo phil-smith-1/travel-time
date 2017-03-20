@@ -3,6 +3,7 @@ require 'sinatra'
 
 class WebApp < Sinatra::Base
   get '/' do
+    @date_time_now = Time.now.strftime('%Y-%m-%dT%H:%M')
     erb :form
   end
 
