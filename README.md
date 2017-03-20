@@ -16,6 +16,6 @@ There are unit tests for the models. Run `rspec` to run all of the tests, or app
 ## Future Improvements
 * Enable use of a map to add locations on the form
 * More error handling
-* Only London locations are required. Validation could be added to the form to check postcodes as they're entered
+* Only London locations are required. The system currently removes any non-london postcodes from the itinerary automatically. Validation could be added to the form to check postcodes as they're entered
 * Use VCR for the external API calls in the tests rather than straight webmock
-* Google map code could possibly be cleaned up
+* Google map code could possibly be cleaned up and maybe moved out into a presenter file
