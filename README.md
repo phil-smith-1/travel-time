@@ -13,7 +13,7 @@ Use `rackup config.ru` to run the system and visit [http://localhost:9292](http:
 
 There are unit tests for the models. Run `rspec` to run all of the tests, or append a filename to run a particular test.
 
-##Future Improvements
+## Future Improvements
 * Enable use of a map to add locations on the form
 * More error handling
 * Only London locations are required. Validation could be added to the form to check postcodes as they're entered
