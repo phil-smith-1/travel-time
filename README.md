@@ -1,7 +1,7 @@
 # Travel Time
 A Sinatra project that provides travel times between Barbican and one or more locations in London.
 The project makes use of the following APIs:
-* CityMapper
+* CityMapper - Currently a little flaky, which occasionally causes travel times to be 0.
 * Postcode.io
 * Google Maps
 
