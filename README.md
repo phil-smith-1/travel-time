@@ -18,4 +18,4 @@ There are unit tests for the models. Run `rspec` to run all of the tests, or app
 * More error handling
 * Only London locations are required. Validation could be added to the form to check postcodes as they're entered
 * Use VCR for the external API calls in the tests rather than straight webmock
-* Google map code could possible be cleaned up
+* Google map code could possibly be cleaned up
