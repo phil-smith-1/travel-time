@@ -9,7 +9,7 @@ The system can currently be viewed [here](http://travel-time.herokuapp.com).
 
 To run locally, clone the repository and run `bundle` to install the Gems. You will need to add a `.env` file to the root of the project containing API keys for both CityMapper (`CITY_MAPPER_KEY`) and Google Maps (`GOOGLE_MAPS_API_KEY`).
 
-Use `rackup config.ru` to run the system and visit [http://localhost:9292].
+Use `rackup config.ru` to run the system and visit [http://localhost:9292](http://localhost:9292).
 
 There are unit tests for the models. Run `rspec` to run all of the tests, or append a filename to run a particular test.
 
